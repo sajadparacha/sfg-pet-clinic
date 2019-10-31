@@ -5,15 +5,6 @@ import java.time.LocalDate;
 public class Pet {
     private PetType petType;
     private Owner owner;
-
-    public LocalDate getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
-    }
-
     private LocalDate birthday;
 
     public PetType getPetType() {
