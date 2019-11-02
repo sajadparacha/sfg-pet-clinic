@@ -4,6 +4,9 @@ import com.spring5.sfgpetclinic.model.Vet;
 
 import java.util.Set;
 
+/**
+ * @Author Sajjad Paracha
+ */
 public interface VetService {
 
     Vet findById(Long id);
