@@ -20,7 +20,6 @@ public abstract class AbstractMapService <T,ID>  {
 
 
      Set<T> findAll() {
-
         return new HashSet<T>( map.values()) ;
     }
 
