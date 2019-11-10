@@ -1,4 +1,4 @@
-package com.spring5.sfgpetclinic.web;
+package com.spring5.sfgpetclinic;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Let's say we have another package com.spring5.sfgpetclinic.web1 , any Controller inside it will not be picked hence if used anywhere will result in errors.
  */
 @SpringBootApplication
+
 public class SfgpetclinicApplication {
     /**
      * Comment added by sajjad
