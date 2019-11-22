@@ -9,4 +9,9 @@ public class IndexPageController {
     public String shoeIndexPage(){
         return "index";
     }
+
+    @RequestMapping("oups")
+    public String errorPageMotImplemented(){
+        return "notimplemented";
+    }
 }
