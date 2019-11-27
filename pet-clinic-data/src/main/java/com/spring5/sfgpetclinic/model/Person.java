@@ -1,8 +1,16 @@
 package com.spring5.sfgpetclinic.model;
 
-public class Person extends BaseEntity {
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 
+@MappedSuperclass
+/*
+Because of the above annotation no object for this class will be created in the database
+ */
+public class Person extends BaseEntity {
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
 
     public String getFirstName() {
