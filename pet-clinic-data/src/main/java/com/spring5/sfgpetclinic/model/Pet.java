@@ -22,7 +22,7 @@ public class Pet extends BaseEntity{
     public void setVisitSet(Set<Visit> visitSet) {
         this.visitSet = visitSet;
     }
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "visit_id")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "id")
     private Set<Visit> visitSet=new HashSet<>();
     public String getName() {
         return name;

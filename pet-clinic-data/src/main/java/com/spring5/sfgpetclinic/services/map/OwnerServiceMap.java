@@ -9,13 +9,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.Set;
 @Service
+//@Profile("mapService")
 public class OwnerServiceMap extends AbstractMapService<Owner,Long> implements OwnerService {
     private PetService petService;
     private PetTypeService petTypeService;
 
+
     public OwnerServiceMap(PetService petService, PetTypeService petTypeService) {
         this.petService = petService;
         this.petTypeService = petTypeService;
+        System.out.println("Constructor callsed fr OwnerServiceMap");
     }
 
     @Override
@@ -44,6 +47,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner,Long> implements O
                     }
                 });
             }
+            System.out.println("Save Method called from inside OwnerServiceMap");
             return super.save(owner);
         }
         else {
