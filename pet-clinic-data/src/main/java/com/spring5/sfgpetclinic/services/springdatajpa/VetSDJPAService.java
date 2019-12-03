@@ -3,6 +3,8 @@ package com.spring5.sfgpetclinic.services.springdatajpa;
 import com.spring5.sfgpetclinic.model.Vet;
 import com.spring5.sfgpetclinic.repositories.VetRepository;
 import com.spring5.sfgpetclinic.services.VetService;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +12,12 @@ import java.util.Set;
 //import com.spring5.sfgpetclinic.repositories.SpecialityRepository;
 
 //import com.spring5.sfgpetclinic.services.SpecialtyService;
-
+@Service
+/**
+ * Since there is no profile like this enabled in this application , spring boot will consider this as a disabled profile
+ * and load other instance of OwenerService for now i.e. OwnerServiceMap
+ */
+@Profile("SpringDataJPA")
 public class VetSDJPAService implements VetService {
     VetRepository vetRepository;
 //    SpecialityRepository specialityRepository;
