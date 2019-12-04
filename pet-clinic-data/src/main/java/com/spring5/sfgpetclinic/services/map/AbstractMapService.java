@@ -1,9 +1,16 @@
 package com.spring5.sfgpetclinic.services.map;
 
 import com.spring5.sfgpetclinic.model.BaseEntity;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
-
+@Service
+/**
+ * If no profile is defined spring will have a default profile , otherwise the profiles defined will be taken.
+ * In this case since we have not defined a profile yet default will be used by Spring hence this class will be loaded
+ */
+@Profile({"default","map"})
 public abstract class AbstractMapService <T extends BaseEntity,ID extends Long>  {
     protected Map<Long,T> map=new HashMap<>();
 
