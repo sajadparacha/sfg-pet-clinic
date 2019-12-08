@@ -1,10 +1,19 @@
 package com.spring5.sfgpetclinic.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
-
+/*Lombok Annotations*/
+@Setter
+@Getter
+@EqualsAndHashCode(exclude = {"owner","visitSet"})
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+/*Lombok Annotations*/
 @Entity
 @Table(name = "pet")
 public class Pet extends BaseEntity{
@@ -15,51 +24,18 @@ public class Pet extends BaseEntity{
     @JoinColumn(name = "owner_id")
     private Owner owner;
 
-    public Set<Visit> getVisitSet() {
-        return visitSet;
-    }
 
-    public void setVisitSet(Set<Visit> visitSet) {
-        this.visitSet = visitSet;
-    }
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "id")
     private Set<Visit> visitSet=new HashSet<>();
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
     @Column(name = "name")
     private String name;
 
-    public LocalDate getBirthday() {
-        return birthday;
-    }
 
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
-    }
-    @Column(name = "birthday")
+     @Column(name = "birthday")
     private LocalDate birthday;
 
 
 
 
-    public PetType getPetType() {
-        return petType;
-    }
-
-    public void setPetType(PetType petType) {
-        this.petType = petType;
-    }
-
-    public Owner getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Owner owner) {
-        this.owner = owner;
-    }
-}
+   }

@@ -5,11 +5,12 @@ import com.spring5.sfgpetclinic.services.OwnerService;
 import com.spring5.sfgpetclinic.services.PetTypeService;
 import com.spring5.sfgpetclinic.services.SpecialtyService;
 import com.spring5.sfgpetclinic.services.VetService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-
+@Slf4j
 @Component
 public class DataLoader implements CommandLineRunner {
 
@@ -27,6 +28,7 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        log.debug(">>>>>>>>>>>>>>>>>>>>>>DataLoader Getting Started<<<<<<<<<<<<<<<<<<<<<<");
         if(petTypeService.findAll().size()==0) {
             loadData();
         }

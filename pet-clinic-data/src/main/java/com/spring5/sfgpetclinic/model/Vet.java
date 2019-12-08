@@ -1,8 +1,18 @@
 package com.spring5.sfgpetclinic.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+/*Lombok Annotations*/
+@Setter
+@Getter
+@EqualsAndHashCode(exclude = {"specialities"})
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+/*Lombok Annotations*/
 @Entity
 @Table(name = "vet")
 public class Vet extends Person {
@@ -14,11 +24,4 @@ public class Vet extends Person {
     )
     private Set<Speciality> specialities=new HashSet<>();
 
-    public Set<Speciality> getSpecialities() {
-        return specialities;
-    }
-
-    public void setSpecialities(Set<Speciality> specialities) {
-        this.specialities = specialities;
-    }
 }
