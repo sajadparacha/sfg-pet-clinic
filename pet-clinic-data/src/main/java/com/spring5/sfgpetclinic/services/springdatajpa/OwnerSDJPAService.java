@@ -28,7 +28,11 @@ public class OwnerSDJPAService implements OwnerService {
     }
 
     @Override
-    public Set<Owner> findByFirstName(String firstName) {
+//    public Set<Owner> findByFirstName(String firstName) {
+//        return ownerRepository.findByFirstName(firstName);
+//    }
+
+    public Owner findByFirstName(String firstName) {
         return ownerRepository.findByFirstName(firstName);
     }
 
