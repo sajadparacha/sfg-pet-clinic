@@ -97,7 +97,7 @@ class OwnerControllerTest {
         mockMvc.perform(get("/owners/123"))
                 //Then
                 .andExpect(status().isOk())
-                .andExpect(view().name("/ownerDetails"))
+                .andExpect(view().name("/owner/ownerDetails"))
                 .andExpect(model().attributeExists("owner"));
 
     }
