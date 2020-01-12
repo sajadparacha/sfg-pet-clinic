@@ -32,8 +32,8 @@ public class Pet extends BaseEntity{
     private String name;
 
 
-     @Column(name = "birthday")
-    private LocalDate birthday;
+     @Column(name = "birth_date")
+    private LocalDate birthDate;
 
 
 

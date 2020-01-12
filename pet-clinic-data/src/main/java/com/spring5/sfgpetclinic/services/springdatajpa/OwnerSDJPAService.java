@@ -5,11 +5,13 @@ import com.spring5.sfgpetclinic.repositories.OwnerRepository;
 import com.spring5.sfgpetclinic.repositories.PetRepository;
 import com.spring5.sfgpetclinic.repositories.PetTypeRepository;
 import com.spring5.sfgpetclinic.services.OwnerService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
+@Slf4j
 @Service
 /**
  * Since there is no profile like this enabled in this application , spring boot will consider this as a disabled profile
@@ -41,6 +43,7 @@ public class OwnerSDJPAService implements OwnerService {
         /**
          * findById will return an optional , orElse will retunr null if there is no object in optional otherwise the object will be returned.
          */
+        log.debug("findById is Called from "+this);
          return ownerRepository.findById(aLong).orElse(null);
     }
 
