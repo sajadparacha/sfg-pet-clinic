@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
+
 @Table(name = "pet_type")
 public class PetType extends BaseEntity{
     public String getName() {
@@ -16,4 +17,9 @@ public class PetType extends BaseEntity{
     }
     @Column(name = "name")
     private String name;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
