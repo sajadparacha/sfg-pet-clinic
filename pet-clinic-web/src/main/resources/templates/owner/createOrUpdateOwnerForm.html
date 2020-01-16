@@ -19,10 +19,14 @@
     </div>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
+        <!--owner['new'] in below line will call the isNew method in the BaseEntity Class to make sure if this is a new or existing Owner -->
+
         <button
-          th:with="text=${owner['new']} ? 'Add Owner' : 'Update Owner'"
+                th:with="text=${owner['new']} ? 'Add Owner' : 'Update Owner'"
+
           class="btn btn-default" type="submit" th:text="${text}">Add
           Owner</button>
+        <!--   th:with="text=${owner.id==null} ? 'Add Owner' : 'Update Owner'"       -->
       </div>
     </div>
   </form>

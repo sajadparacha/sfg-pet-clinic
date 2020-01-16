@@ -20,9 +20,9 @@ import java.util.Set;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.verifyNoInteractions;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -133,7 +133,7 @@ class OwnerControllerTest {
         mockMvc.perform(get("/owners/findOwners"))
                 //Then
                 .andExpect(status().isOk())
-                .andExpect(view().name("owners/ownersList"))
+                .andExpect(view().name("owner/ownersList"))
 
                 .andExpect(model().attribute("owners",hasSize(2)));
         //verify(ownerService.findAllByFirstName(anyString()));
@@ -156,5 +156,73 @@ class OwnerControllerTest {
 
                 .andExpect(model().attribute("owners",hasSize(1)));
 //        verify(ownerService.findAllByFirstName(anyString()));
+    }
+
+    @Test
+    void initCreationForm() throws Exception {
+        //Given
+        Owner owner=Owner.builder().build();
+        //Since we are not calling any service in this method of Controller , we dont need to create a mock interaction here
+        //When
+        mockMvc.perform(get("/owners/new"))
+                //Then
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("owner"))
+                .andExpect(view().name("owner/createOrUpdateOwnerForm"));
+
+    }
+    @Test
+    void processCreationForm() throws Exception {
+        //Given
+        Owner owner=Owner.builder().id(1L).build();
+        when(ownerService.save(any())).thenReturn(owner);
+        //When
+        mockMvc.perform(post("/owners/new"))
+                //Then
+                .andExpect(status().is3xxRedirection())
+                .andExpect(model().attributeExists("owner"))
+                .andExpect(view().name("redirect:/owners/1"));
+
+    }
+    @Test
+    void initUpdateOwnerForm() throws Exception {
+        //Given
+        Owner owner=Owner.builder().id(1L).firstName("Sajjad").build();
+        when(ownerService.findById(any())).thenReturn(owner);
+        //When
+        mockMvc.perform(get("/owners/1/edit"))
+                //Then
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("owner"))
+//                .andExpect(model.getAttribute("owner"))
+                .andExpect(view().name("owner/createOrUpdateOwnerForm"));
+
+    }
+
+    @Test
+    void processUpdateOwnerForm() throws Exception {
+        //given
+        //Owner owner=Owner.builder().id(1L).firstName("Sajjad").build();
+        Owner savedOwner=Owner.builder().id(1L).firstName("Sajjad Paracha").build();
+        when(ownerService.save(any())).thenReturn(savedOwner);
+        //when
+        mockMvc.perform(post("/owners/1/edit"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/owners/1" ));
+        //then
+
+    }
+    @Test
+    void deleteOwner() throws Exception {
+        //Given
+        Long id=1L;
+            //**Since delete is a void method we don't need to define a mock interaction here
+        //When
+        mockMvc.perform(get("/owners/1/delete"))
+        //Then
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/owners/ownerList"));
+        verify(ownerService,times(1)).deleteById(any());
+
     }
 }
