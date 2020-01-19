@@ -12,7 +12,7 @@ import java.util.Set;
 @EqualsAndHashCode(exclude = {"owner","visitSet"})
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+
 /*Lombok Annotations*/
 @Entity
 @Table(name = "pet")
@@ -35,6 +35,15 @@ public class Pet extends BaseEntity{
      @Column(name = "birth_date")
     private LocalDate birthDate;
 
+    @Builder
+    public Pet(Long id, PetType petType, Owner owner, Set<Visit> visitSet, String name, LocalDate birthDate) {
+        super(id);
+        this.petType = petType;
+        this.owner = owner;
+        this.visitSet = visitSet;
+        this.name = name;
+        this.birthDate = birthDate;
+    }
 
 
 
