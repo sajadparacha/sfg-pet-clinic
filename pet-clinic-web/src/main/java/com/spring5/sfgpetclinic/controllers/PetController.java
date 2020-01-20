@@ -32,7 +32,7 @@ public class PetController {
     /*
     The following attributes will be avaialable in all the controller methods under Model object
      */
-    @ModelAttribute("types")
+    @ModelAttribute("petTypes")
     public Collection<PetType> populatePetTypes() {
         return this.petTypeService.findAll();
     }
@@ -69,6 +69,7 @@ public class PetController {
         }
         owner.getPets().add(pet);
         if (result.hasErrors()) {
+            pet.setOwner(owner);
             model.addAttribute("pet", pet);
             return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
         }
