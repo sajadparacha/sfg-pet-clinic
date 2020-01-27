@@ -24,4 +24,7 @@ public class Vet extends Person {
     )
     private Set<Speciality> specialities=new HashSet<>();
 
+    public int getNrOfSpecialties(){
+        return specialities!=null?specialities.size():0;
+    }
 }
